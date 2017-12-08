@@ -1,0 +1,22 @@
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <duelemails_options translate="title" module="duel_emails">
+                                        <title>Duel</title>
+                                        <sort_order>999</sort_order>
+                                    </duelemails_options>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

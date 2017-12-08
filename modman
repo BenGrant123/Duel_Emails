@@ -1,0 +1,6 @@
+app/etc/modules/Duel_Emails.xml app/etc/modules/Duel_Emails.xml
+app/code/local/Duel app/code/local/Duel
+app/design/frontend/base/default/layout/duel/duelgallery.xml app/design/frontend/base/default/layout/duel/duelgallery.xml
+app/design/frontend/base/default/template/duel/duelgallery.phtml app/design/frontend/base/default/template/duel/duelgallery.phtml
+app/design/adminhtml/base/default/layout/duel/picker.xml app/design/adminhtml/base/default/layout/duel/picker.xml
+app/locale/en_US/template/email/duel/followup_template.html app/locale/en_US/template/email/duel/followup_template.html

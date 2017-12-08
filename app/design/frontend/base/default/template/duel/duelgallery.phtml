@@ -1,0 +1,69 @@
+<script async src="https://vision.duel.me/loader.js"></script>
+<script>
+    window.DuelVision = window.DuelVision || function(o) {
+        (DuelVision.s = DuelVision.s || []).push(o)
+    };
+</script>
+<div id="duelvision-component"></div>
+<script>
+    var duelGalleryJSON = '<?php echo $this->getGallery() ?>';
+    var duelGallery = JSON.parse(duelGalleryJSON);
+    if (duelGallery && duelGallery.active == 1) {
+        var duelPosition = parseInt(duelGallery.position);
+        var duelSelector = duelGallery.selector;
+        var duelDefaultPosition = parseInt(duelGallery.default_position);
+        var duelDefaultSelector = duelGallery.default_selector;
+        var duelRows = duelGallery.rows == '0' ? 12 : duelGallery.rows;
+        var duelColumns = duelGallery.columns == '0' ? 3 : duelGallery.columns;
+        var options = {
+          product: duelGallery.product,
+          sort: 'created',
+          color: duelGallery.color,
+          backgroundColor: duelGallery.background,
+          rows: duelRows,
+          columns: duelColumns,
+          origin: 'https://vision.duel.me'
+        }
+		if (duelSelector && document.querySelector(duelSelector)) {
+        options.appendTo = duelSelector;
+		} else if (duelPosition && duelPosition > 0 && StandardPagePositions(duelPosition)) {
+			options.container = StandardPagePositions(duelPosition);
+			options.prepend = (duelPosition == 2) ? true : false;
+		} else if (duelDefaultSelector && document.querySelector(duelDefaultSelector)) {
+			options.appendTo = duelDefaultSelector
+		} else if (duelDefaultPosition && duelDefaultPosition > 0 && StandardPagePositions(duelDefaultPosition)) {
+			options.container = StandardPagePositions(duelDefaultPosition);
+			options.prepend = (duelDefaultPosition == 2) ? true : false;
+		} else if (document.querySelector('.product-shop')) {
+			options.appendTo = '.product-shop';
+		}
+		DuelVision(options);
+    }
+   
+    function StandardPagePositions(option) {
+      var container = null;
+      switch (option) {
+            case 1:
+                if (document.querySelector('.add-to-cart-wrapper')) {
+                    container = '.add-to-cart-wrapper';
+                }
+                break;
+            case 2:
+                if (document.querySelector('.product-collateral')) {
+                    container = '.product-collateral';
+                }
+                break;
+            case 3:
+                if (document.querySelector('.product-collateral')) {
+                    container = '.product-collateral';
+                }
+                break;
+            case 4:
+                if (document.querySelector('.product-img-box')) {
+                  container = '.product-img-box';
+                }
+                break;
+        }
+      return container;
+    }
+</script>

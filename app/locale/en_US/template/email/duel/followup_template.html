@@ -1,0 +1,32 @@
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+<h1>{{config path="general/store_information/name"}}</h1>
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">
+                ORDER#{{var order_id}},
+                <h1>Your order has been delivered</h1>
+            </p>
+            <p>Haven't received your package yet? <a href="mailto:{{config path='trans_email/ident_general/email'}}">Let us know</a>
+            </p>
+        </td>
+    </tr>
+    <tr>
+         <td>
+            <p style="padding: 15px 0; text-align: center; width: 100%; border-radius: 5px; background-color: #1E90FF;"><a style="color: white;" href="{{config path='web/secure/base_url'}}customer/account/">View your order</a></p>
+            <p style="padding: 15px 0; text-align: center; width: 100%; border-radius: 5px;">or <a style="color: #1E90FF;" href="{{config path='web/secure/base_url'}}">Visit our store</a></p>
+         </td>
+    </tr>
+    <tr>
+        <td>
+            <h1>Win £60 and feature on our website</h1>
+            <p>Upload a photo of your recently purchased items for a chance to win a £60 voucher to spend in our store and feature on our website.</p>
+             
+            <h1>Items in this shipment:</h1>
+            
+        </td>
+    </tr>
+</table>
+{{var items}}
+{{template config_path="design/email/footer"}}

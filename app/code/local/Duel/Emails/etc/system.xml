@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<config>
+  <tabs>
+    <duelconfig translate="label" module="duel_emails">
+      <label>Duel</label>
+      <sort_order>99999</sort_order>
+    </duelconfig>
+  </tabs>
+  <sections>
+    <duelemails_options translate="label" module="duel_emails">
+      <label>Duel Configuration</label>
+      <tab>duelconfig</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>1000</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <emails translate="label" module="duel_emails">
+          <label>Followup Email Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>1</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <active>
+              <label>Enable/Disable</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>1</sort_order>
+              <source_model>adminhtml/system_config_source_enabledisable</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </active>
+            <brand_short_id>
+              <label>Brand Short ID</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Get your short ID from a public SKU campaign link in the Duel Dashboard: duel.me/p/yourshortid/SKU</comment>
+            </brand_short_id>
+            <email_delay>
+              <label>Followup interval</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Time between invoice and followup email (in days).</comment>
+            </email_delay>
+            <items_template>
+              <label>Template for order items</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>4</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Change the colour and size of the call-to-action buttons in the Duel follow-up email.</comment>
+            </items_template>
+            <duel_emails_template>
+              <label>Template for follow-up emails</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>5</sort_order>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Select a different Duel follow-up email template if you have saved a modified one.</comment>
+            </duel_emails_template>
+          </fields>
+        </emails>
+        <galleries translate="label" module="duel_emails">
+          <label>Gallery Default Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>2</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <show_galleries>
+              <label>Show galleries on product page</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>0</sort_order>
+              <source_model>adminhtml/system_config_source_enabledisable</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Determines whether galleries will be displayed on the product page by default</comment>
+            </show_galleries>
+            <default_color>
+              <label>Text color</label>
+              <frontend_type>text</frontend_type>
+              <validate>color</validate>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </default_color>
+            <default_background>
+              <label>Background color</label>
+              <frontend_type>text</frontend_type>
+              <validate>color</validate>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </default_background>
+            <default_columns>
+              <label>Amount of columns</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>3</sort_order>
+              <source_model>duel_emails_gallery_config/columns</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </default_columns> 
+            <default_rows>
+              <label>Amount of rows</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>4</sort_order>
+              <source_model>duel_emails_gallery_config/rows</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </default_rows>
+            <default_position>
+              <label>Position on product page</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>5</sort_order>
+              <source_model>duel_emails_gallery_config/position</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>If the gallery doesn't show up, select Custom and insert a CSS selector of your choice.</comment>
+            </default_position>
+            <custom_position>
+              <label>Custom CSS selector</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>6</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends><default_position>5</default_position></depends>
+              <comment>The gallery will be appended to the element matching your selector.</comment>
+            </custom_position>
+          </fields>
+        </galleries>
+      </groups>
+    </duelemails_options>
+  </sections>
+</config>

@@ -1,0 +1,8 @@
+<config>
+  <modules>
+    <Duel_Emails>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Duel_Emails>
+  </modules>
+</config>

@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Duel_Emails>
+      <version>1.0.3</version>
+    </Duel_Emails>
+  </modules>
+
+  <global>
+    <blocks>
+      <duel_emails_adminhtml>
+        <class>Duel_Emails_Block_Adminhtml</class>
+      </duel_emails_adminhtml>
+      <duel_emails>
+        <class>Duel_Emails_Block</class>
+      </duel_emails>
+    </blocks>
+    <helpers>
+      <duel_emails>
+        <class>Duel_Emails_Helper</class>
+      </duel_emails>
+    </helpers>
+    <models>
+      <duel_emails>
+        <class>Duel_Emails_Model</class>
+        <resourceModel>duel_emails_resource</resourceModel>
+      </duel_emails>
+      <duel_emails_gallery_config>
+        <class>Duel_Emails_Model_System_Config_Gallery</class>
+      </duel_emails_gallery_config>
+      <duelemailscron>
+        <class>Duel_Emails_Model_Cron</class>
+      </duelemailscron>
+      <duel_emails_resource>
+        <class>Duel_Emails_Model_Resource</class>
+        <entities>
+          <followup>
+            <table>duel_emails_followup</table>
+          </followup>
+        </entities>
+      </duel_emails_resource>
+    </models>
+    <resources>
+      <duel_emails_setup>
+        <setup>
+          <module>Duel_Emails</module>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </duel_emails_setup>
+    </resources>
+    <events>
+      <sales_order_shipment_save_after>
+        <observers>
+          <emails_order_export>
+            <type>singleton</type>
+            <class>Duel_Emails_Model_Observer</class>
+            <method>orderExport</method>
+          </emails_order_export>
+        </observers>
+      </sales_order_shipment_save_after>
+    </events>
+    <template>
+      <email>
+        <duel_emails_template module="duel_emails">
+          <label>Duel followup email template</label>
+          <file>duel/followup_template.html</file>
+          <type>html</type>
+        </duel_emails_template>
+      </email>
+    </template>
+  </global>
+
+  <frontend>
+    <layout>
+      <updates>
+        <duelgallery>
+          <file>duel/duelgallery.xml</file>
+        </duelgallery>
+      </updates>
+    </layout>
+    <routers>
+      <duel_emails>
+        <use>standard</use>
+        <args>
+          <module>Duel_Emails</module>
+          <frontName>feeds</frontName>
+        </args>
+      </duel_emails>
+    </routers>
+  </frontend>
+
+  <admin>
+    <routers>
+      <duel_emails_admin>
+        <use>admin</use>
+        <args>
+          <module>Duel_Emails_Adminhtml</module>
+          <frontName>duel-emails-admin</frontName>
+        </args>
+      </duel_emails_admin>
+    </routers>
+  </admin>
+
+  <adminhtml>
+    <layout>
+      <updates>
+        <basket>
+          <file>duel/picker.xml</file>
+        </basket>
+      </updates>
+    </layout>
+    <menu>
+      <duel_emails translate="title" module="duel_emails">
+        <title>Duel</title>
+        <sort_order>75</sort_order>
+        <depends>
+          <module>Duel_Emails</module>
+        </depends>
+        <children>
+          <gallery translate="title" module="duel_emails">
+            <title>Manage Galleries and emails</title>
+            <sort_order>11</sort_order>
+            <action>duel_emails_admin/gallery</action>
+          </gallery>
+          <duelfeed translate="title" module="duel_emails">
+            <title>Manage JSON product feed</title>
+            <sort_order>11</sort_order>
+            <action>duel_emails_admin/duelfeed</action>
+          </duelfeed>
+        </children>
+        
+      </duel_emails>
+    </menu>
+    <acl>
+      <resources>
+        <admin>
+          <children>
+            <system>
+              <children>
+                <config>
+                  <children>
+                    <duelemails_options>
+                      <title>Duel Followup Email Section</title>
+                    </duelemails_options>
+                  </children>
+                </config>
+              </children>
+            </system>
+          </children>
+        </admin>
+      </resources>
+    </acl>
+  </adminhtml>
+
+  <default>
+    <duelemails_options>
+      <emails>
+        <active>0</active>
+        <email_delay>5</email_delay>
+        <items_template>
+          <![CDATA[
+<tr>
+  <th><img $imageSrc style="max-width: 250px;"></th>
+  <th style="padding: 20px;"><h2>$productName</h2></th>
+  <th><button style="border-radius: 5px; padding: 12px; font-size: 16px; background-color: #1E90FF; color: white; border: none; max-width: 250px;">$link</button></th>
+</tr>
+]]>
+        </items_template>
+      </emails>
+      <galleries>
+        <default_color>222222</default_color>
+        <default_background>FFFFFF</default_background>
+        <default_columns>3</default_columns>
+        <default_rows>12</default_rows>
+        <show_galleries>0</show_galleries>
+      </galleries>
+    </duelemails_options>
+  </default>
+
+  <crontab>
+    <jobs>
+      <duelemailscron>
+        <schedule><cron_expr>*/1 * * * *</cron_expr></schedule>
+        <run><model>duelemailscron/observer::sendMail</model></run>
+      </duelemailscron>
+    </jobs>
+  </crontab>
+</config>
